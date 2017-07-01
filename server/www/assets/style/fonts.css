@@ -1,0 +1,13 @@
+@import 'https://fonts.googleapis.com/css?family=Nunito:300,700';
+@import url(fonts/bitstream.css);
+
+html, body {
+	font-family: 'Avenir', 'Nunito', Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, nav{
+	text-transform: uppercase;
+	font-family: 'Bitstream', monaco, Consolas, 'Lucida Console', monospace;
+}

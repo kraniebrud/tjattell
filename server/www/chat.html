@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<title>Chat with Beastie</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/style/layout.css">
+</head>
+<body>
+	<div id="chooseChatNameWindow">
+		<form id="chatNameForm">
+			<div class="inner">
+				<h1>Chat with Beastie</h1>
+				<input type="text"  name="username" placeholder="Type your Chat name .. "> <br>
+				<button type="submit">I wanna chat now</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="chatBottom">
+		<form id="chatMessageForm">
+			<input name="message" type="text" placeholder="Besked">
+			<button type="submit">Send</button>
+		</form>
+	</div>
+
+	<ul id="messages">
+		<!-- message goes here doh -->
+	</ul>
+
+	<div id="chatErrorWindow"></div>
+	<script type="text/javascript" src="/assets/js/beastie.js"></script>
+</body>
+</html

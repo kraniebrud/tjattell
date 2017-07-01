@@ -1,0 +1,115 @@
+@charset "UTF-8";
+@import url(fonts.css);
+
+html, body {
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	background: #FFF;
+	color: #000;
+}
+* {
+	box-sizing: border-box;
+}
+
+input:focus, button:focus, input, button {
+	outline: none;
+	background: #FFF;
+	border: 0;
+	padding: .5rem;
+}
+
+.chatBottom form {
+	position: absolute;
+	padding: 0;
+	z-index: 10;
+	bottom: 0;
+	width: 100%;
+	background: #DDD;
+}
+.chatBottom form input {
+	width: 100%;	
+	border: 15px solid;
+	padding-right: 145px;
+}
+.chatBottom form button {
+	width: auto;
+	top: 0;
+	right: 0;
+	position: absolute;
+	background: #000;
+	height: 100%;
+	width: 150px;
+	color: #FFF;
+	border: transparent;
+}
+ul#messages {
+	position: absolute;
+	z-index: 0;
+	padding: 0 1rem;
+	padding-bottom: 65px;
+	margin: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+ul#messages li {
+	display: block;
+	padding: .5rem;
+	margin: .5rem 0;
+}
+ul#messages li:nth-child(even){
+	background: #EEE;
+}
+ul#messages li b {
+	display: inline-block;
+	margin-right: 2rem;
+	width: 125px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+ul#messages li p {
+	margin: 0;
+}
+
+#chooseChatNameWindow, #chatErrorWindow {
+	position: fixed;
+	color: #FFF;
+	z-index: 20;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	padding: 2rem 0;
+	text-align: center;
+}
+#chooseChatNameWindow .inner, #chatErrorWindow .inner{
+	width: 400px;
+	margin: 3rem auto;
+}
+#chooseChatNameWindow button,  #chooseChatNameWindow input{
+	width: 100%;
+	margin: 2rem 0 .5rem;
+	padding: 1rem;
+	font-size: 1.65rem;
+}
+#chooseChatNameWindow input {
+	background: transparent;
+	color: #FFF;
+	border-bottom: 3px dotted;
+	font-style: italic;
+}
+#chooseChatNameWindow button {
+	background: transparent;
+	color: #FFF;
+	border: 3px solid;
+}
+#chooseChatNameWindow.closed, #chatErrorWindow {
+	display: none;
+}
+#chatErrorWindow.open {
+	display: block;
+}

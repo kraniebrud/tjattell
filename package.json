@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server",
-    "forever": "forever ./server",
-    "forever:watch": "npm run forever --watch --watchDirectory ./server",
+    "start": "node ./app",
+    "forever": "forever ./app",
+    "forever:watch": "forever --watch --watchDirectory ./app ./app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

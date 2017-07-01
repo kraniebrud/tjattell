@@ -5,6 +5,10 @@ const handler = require('./handler')
 
 const io = require('socket.io')(app.select('chat').listener)
 
+const {getAddons, actions} = require(`${__app}/addon`)
+
+const addons = getAddons()
+
 const validation = {
 	username: Joi.string().min(2).max(16),
 	message: Joi.string().min(1).max(160)
@@ -19,9 +23,10 @@ app.route({
 				username: validation.username,
 				message: validation.message
 			}
-		},
+		}
 	},
-	handler: handler.chat.message(io)
+
+	handler: handler.chat.message(io, {addons, actions})
 })
 
 app.route({

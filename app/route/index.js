@@ -5,39 +5,22 @@ const handler = require('./handler')
 
 const io = require('socket.io')(app.select('chat').listener)
 
-const {getAddons, actions} = require(`${__app}/addon`)
-
-const addons = getAddons()
-
-const validation = {
-	username: Joi.string().min(2).max(16),
-	message: Joi.string().min(1).max(160)
-}
+const Addon = require(`${__app}/addon`)
 
 app.route({
 	method: ['POST'],
 	path: '/chat/message',
 	config: {
-		validate: {
-			payload: {
-				username: validation.username,
-				message: validation.message
-			}
-		}
+		pre: Addon.action('CHAT_MESSAGE')
 	},
-
-	handler: handler.chat.message(io, {addons, actions})
+	handler: handler.chat.message(io)
 })
 
 app.route({
 	method: ['post'],
 	path: '/chat/join',
 	config: {
-		validate: {
-			payload: {
-				username: validation.username
-			}
-		},
+		pre: Addon.action('CHAT_JOIN')
 	},
 	handler: handler.chat.join(io)
 })

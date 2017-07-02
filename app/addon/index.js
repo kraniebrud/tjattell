@@ -17,14 +17,27 @@ async function getAddons () {
 			getAddonsWithinDir(`${__dirname}/custom`)	
 		])
 		.spread( (builtin, custom) => {
-			return builtin.concat(custom)
+			return Object.assign(builtin, custom)
 		})
 }
 
-const actions = addons => {
-	addons.forEach( action => {
-		console.log(Object.keys(action))
-	})
+function Addon() {
+	this.collection = []
+
+	this.action = ( ( method, io ) => this.collection
+		.filter( addon => {
+			if( addon [method] !== undefined ) {
+				return typeof addon [method] === 'function'	
+			}else {
+				return false
+			}
+		})
+		.map( action => ( {method : action [method] } ))
+	)
+	
+	this.init = async () => await getAddons()
+		.then( coll => this.collection = Object.freeze(coll) )
+	
 }
 
-module.exports = {getAddons, actions}
+module.exports = new Addon()

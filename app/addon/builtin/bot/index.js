@@ -7,6 +7,17 @@ bot.create( (err, session) => {
 })
 
 function AddonBot () {
+/*	console.log('req')
+	console.log('req')
+	console.log('req')
+	console.log(request)*/
+/*
+	this.CHAT_MESSAGE = ((request, reply) => {
+		request.payload.message = 'GOTCHA!'
+		reply(request.payload)
+	})
+*/
+	/*
 	this.CHAT_MESSAGE = ( (username, message) => {
 		console.log('BOT CAUGHT IT')
 		console.log('username')
@@ -14,6 +25,7 @@ function AddonBot () {
 		console.log('message')
 		console.log(message)
 	})
+	*/
 }
 
-module.exports = new AddonBot()
+module.exports = new AddonBot

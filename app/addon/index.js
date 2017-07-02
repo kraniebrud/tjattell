@@ -10,14 +10,35 @@ const getAddonsWithinDir = addonDir =>
 		}))
 	})
 
-async function getAddons () {
-	return await Promise
+function getAddons () {
+	return Promise
 		.all([
 			getAddonsWithinDir(`${__dirname}/builtin`),
 			getAddonsWithinDir(`${__dirname}/custom`)	
 		])
 		.spread( (builtin, custom) => {
-			return Object.assign(builtin, custom)
+			const customConstructors = custom.map ( c => c.constructor.name )
+
+			// Custom will override builtin if of some constructor name
+			let items = builtin
+				.filter( addon => customConstructors.indexOf(addon.constructor.name) === -1 )
+				.concat(custom)
+				.sort( (currItem, nexItem) => currItem.position - nexItem.position)
+			
+			// Validations first
+			let validationItems = items.filter ( 
+				addon => 
+					addon.assign !== undefined 
+					&& addon.assign.toUpperCase() === 'VALIDATION' 
+			)
+
+			let otherItems = items.filter ( 
+				addon => 
+					addon.assign !== undefined 
+					&& addon.assign.toUpperCase() !== 'VALIDATION' 
+			)
+
+			return validationItems.concat(otherItems)
 		})
 }
 
@@ -32,11 +53,11 @@ function Addon() {
 				return false
 			}
 		})
-		.map( action => ( {method : action [method] } ))
+		.map( action => ( {method : action [method], assign: action.assign} ))
 	)
 	
-	this.init = async () => await getAddons()
-		.then( coll => this.collection = Object.freeze(coll) )
+	this.init = () => getAddons()
+		.then( collection => this.collection = Object.freeze(collection) )
 	
 }
 

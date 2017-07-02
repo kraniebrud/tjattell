@@ -14,10 +14,11 @@ const validateRequest = ( (request, reply) => {
 
 	if(error) return reply(Boom.badData(error)) 
 
-	reply(request.payload)
+	reply({error})
 })
 
 function Validation () {
+	this.assign = 'validation'
 	this.CHAT_JOIN = validateRequest
 	this.CHAT_MESSAGE = validateRequest
 }

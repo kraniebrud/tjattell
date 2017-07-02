@@ -4,11 +4,11 @@ const Addon = require(`${__app}/addon`)
  
 
 module.exports = io => ( (request, reply) => {
-
-	const username = request.payload.username
-	const message = request.payload.message
-
-	io.emit('CHAT_MESSAGE', {username, message})
+	
+	const {username, message} = request.payload
+	const addon = request.pre
+	
+	io.emit('CHAT_MESSAGE',  Object.assign( {username, message}, addon ) )
 
 	reply({})
 

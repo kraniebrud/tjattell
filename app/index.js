@@ -9,28 +9,10 @@ const app = new hapi.Server()
 app.connection({port: process.env.CHAT_PORT, labels: ['chat']})
 
 app.register(require('inert'), (err) => {
-	app.route({
-		method: ['GET'], 
-		path: '/',
-		handler: function(request, reply){
-			reply.file('./app/public/www/chat.html')
-		}
-	})
 
-	// SERVE STATIC FILES
-	app.route({
-		method: 'GET',
-		path: '/assets/{filename*}',
-		handler: {
-			directory: {
-				path: './app/public/www/assets/',
-				listing: false,
-				index: false
-			}
-		}
-	})
+	require('./public/serv')
 
-	Addon.init().then( () => require('./route') )
+	Addon.init().then( () => require('./chat/serv') )
 	
 	app.start( err => {
 		if(err) throw err

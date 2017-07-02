@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const Boom = require('boom')
 const app = require(`${__app}`)
-const handler = require('./handler')
+const {chat} = require('./handler')
 
 const io = require('socket.io')(app.select('chat').listener)
 
@@ -13,7 +13,7 @@ app.route({
 	config: {
 		pre: Addon.action('CHAT_MESSAGE')
 	},
-	handler: handler.chat.message(io)
+	handler: chat.message(io)
 })
 
 app.route({
@@ -22,5 +22,5 @@ app.route({
 	config: {
 		pre: Addon.action('CHAT_JOIN')
 	},
-	handler: handler.chat.join(io)
+	handler: chat.join(io)
 })

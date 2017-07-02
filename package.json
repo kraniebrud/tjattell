@@ -1,8 +1,9 @@
 {
-  "name": "beastie-chat",
+  "name": "Tjatell",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": "Kraniebrud",
   "scripts": {
     "start": "node ./app",
     "forever": "forever ./app",
@@ -14,7 +15,6 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "boom": "^5.1.0",
-    "cleverbot.io": "^1.0.4",
     "dotenv": "^4.0.0",
     "hapi": "^16.1.0",
     "inert": "^4.1.0",
